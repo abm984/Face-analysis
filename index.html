@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <script>
+        const ws = new WebSocket('ws://127.0.0.1:8765');
+
+        ws.onopen = function() {
+            console.log('Connected to the WebSocket server');
+        };
+
+        ws.onmessage = function(event) {
+            const gazeData = JSON.parse(event.data);
+            console.log('Gaze data:', gazeData);
+        };
+
+        ws.onclose = function() {
+            console.log('Disconnected from the WebSocket server');
+        };
+
+        ws.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+    </script>
+</body>
+</html>
